@@ -6,9 +6,25 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="/css/suomipelit.min.css" />
-    <script type="text/javascript" src="js/kokkeilu.js"></script>
+    <script src="https://browserid.org/include.js" type="text/javascript"></script>  
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">Suomipelit</a>
+                <ul id="profile" class="pull-right nav">
+                    <li id="profile-info"></li>
+                    <li><a href="#" id="profile-login" title="Sign-in with BrowserID">
+                        <img src="/img/sign_in_green.png" alt="Sign in">
+                    </a></li>
+                    <li id="profile-logout"><button class="btn btn-inverse">Logout</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="inner">
             <h1>
