@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "express": "~2.5.9",
-    "less-middleware": "~0.1.1"
+    "less-middleware": "~0.1.1",
     "browserid-service-verify": "1.0.0"
   },
   "devDependencies": {},
