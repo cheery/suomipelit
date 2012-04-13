@@ -10,34 +10,39 @@
       } else {
         $('#profile-login').hide();
         $('#profile-logout').show();
-        return $('#profile-info').html('<a href="/profile">' + info.email + '</a>').show('slide');
+        return $('#profile-info').html('<a href="/profile">' + info.email + (" (" + info._id + ")</a>")).show('slide');
       }
     };
     login_logout = function(assertion) {
+      var url;
       if (assertion === null) {
-        return logged_in(null);
+        url = '/api/logout';
       } else {
-        return $.ajax({
-          type: 'POST',
-          url: '/api/login',
-          data: {
-            assertion: assertion
-          },
-          success: function(res, status, xhr) {
-            return logged_in(res);
-          },
-          error: function(res, status, xhr) {
-            return alert("Login failure" + res);
-          }
-        });
+        url = '/api/login';
       }
+      return $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+          assertion: assertion
+        },
+        success: function(res, status, xhr) {
+          return logged_in(res);
+        },
+        error: function(res, status, xhr) {
+          return alert("Login/Logout failure" + res);
+        }
+      });
     };
     $('#profile-info').hide();
     $('#profile-login').click(function() {
       return navigator.id.get(login_logout);
     });
-    return $('#profile-logout').hide().click(function() {
-      return logged_in(null);
+    $('#profile-logout').hide().click(function() {
+      return login_logout(null);
+    });
+    return $.getJSON('/api/profile', function(data) {
+      return logged_in(data);
     });
   });
 
